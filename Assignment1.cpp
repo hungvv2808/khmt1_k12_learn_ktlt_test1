@@ -3,61 +3,62 @@
 
 using namespace std;
 
-int nhapSoNguyen(char c){
-        int n;
-        cout << "Moi ban nhap vao gia tri cua bien nguyen " << c <<": ";  cin >> n;
-        return n;
+void nhapSoNguyen(int &n, char c){
+        cout << "Nhap so nguyen " << c <<": ";
+        cin >> n;
 }
 
-float nhapSoThuc(){
-        float n;
-        cout << "Moi ban nhap vao gia tri cua bien thuc (x): ";  cin >> n;
-        return n;
+void nhapSoThuc(float &x){
+        cout << "Nhap so thuc x: ";
+        cin >> x;
 }
 
-int tangGiaTri(int n){
-        return n+=1;
+void tang(int &n){
+        n++;
 }
 
-int giamGiaTri(int n){
-        return n-=1;
+void giam(int &n){
+        n--;
 }
 
-float tinhP(float x, int n){
-        float ketQua = 2018*pow(x, n);
-        for(int i=2; i<=n; i++) {
-                ketQua += pow(x, i)/pow(3, i-1);
+float P(float x,int n){
+        float xN=1;
+        for (int i=1; i<=n; i++) {
+                xN*=x;
         }
-        return ketQua;
+        float P=2018*xN;
+
+        float T=x;
+        for (int i=2; i<=n; i++) {
+                T*=(float)x/3;
+                P+=T;
+        }
+        return P;
 }
 
 int tongChan(int n){
         int tong=0;
         for(int i=6; i<=n; i+=2) {
-                tong += i;
+                tong+=i;
         }
         return tong;
 }
 
-void inRaGiaTri(int n){
-        cout << "*) Gia tri cua "<< n << " sau khi: " << endl;
-        cout << "\t +) Tang mot don vi la: " << tangGiaTri(n) << endl;
-        cout << "\t +) Giam mot don vi la: " << giamGiaTri(n) << endl;
-        cout << endl;
-}
-
 int main(){
-        float x = nhapSoThuc();
-        int n = nhapSoNguyen('n');
-        int m = nhapSoNguyen('m');
 
-        cout<<endl;
-        inRaGiaTri(n);
-        inRaGiaTri(m);
+        float x;
+        nhapSoThuc(x);
+        int n,m;
+        nhapSoNguyen(n, 'n');
+        nhapSoNguyen(m, 'm');
 
-        cout << "*) Gia tri cua bieu thuc:   P("<< x <<", "<< n <<") = "<< fixed << tinhP(x, n) << endl << endl;
+        tang(n);
+        tang(m);
 
-        cout << "*) Tong cac so chan lon hon 5 trong doan ["<< n <<", "<< m <<"] la: " << tongChan(m)-tongChan(n) << endl;
+        float ketQua = P(x,n);
+        cout << "P(x, n) = "<< fixed << ketQua << endl;
+
+        cout << "Tong cac so chan lon hon 5 trong doan ["<< n <<", "<< m <<"] la: " << tongChan(m)-tongChan(n) << endl;
 
         return 0;
 }
