@@ -59,7 +59,7 @@ int main(){
         cout << "P(x, n) = "<< fixed << ketQua << endl;
 
         cout << "Tong cac so chan lon hon 5 trong doan ["<< n <<", "<< m <<"] la: ";
-        if(n%2==0)  cout << tongChan(m) - tongChan(n) + n << endl;
+        if(n%2==0 && n>5)  cout << tongChan(m) - tongChan(n) + n << endl;
         else  cout << tongChan(m) - tongChan(n) << endl;
 
         return 0;
